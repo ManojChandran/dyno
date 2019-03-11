@@ -18,6 +18,12 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
+	"os"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
+
 )
 
 // listCmd represents the list command
@@ -30,7 +36,30 @@ var listCmd = &cobra.Command{
 list will give all the table names currently available in the AWS account.
 It list out the table name and created date/time.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("list called")
+//		fmt.Println("list called")
+		sess, err := session.NewSession(&aws.Config{
+        Region: aws.String("us-east-1")},
+    )
+
+    // Create DynamoDB client
+    svc := dynamodb.New(sess)
+
+    // Get the list of tables
+    result, err := svc.ListTables(&dynamodb.ListTablesInput{})
+
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(1)
+    }
+
+    fmt.Println("Tables:")
+    fmt.Println("")
+
+    for _, n := range result.TableNames {
+        fmt.Println(*n)
+    }
+
+    fmt.Println("")
 	},
 }
 
