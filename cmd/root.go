@@ -29,7 +29,7 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "dyno",
 	Short: "A CLI tool to interact with AWS DynamoDB",
-	Long: `dyno CLI tool will help to interact with AWS DynamoDB,
+	Long: `    A dyno CLI tool will help to interact with AWS DynamoDB.
 For example:
 
 dyno CLI tool will help in all CURD operations on the DynamoDB tables.
