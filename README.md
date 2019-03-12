@@ -1,11 +1,11 @@
 # dyno CLI Command
 
 This project is to create a dyno cli for interacting with AWS dynamodb. Command line will help in
-  1) List DB
-  2) Create DB
-  3) Update DB
-  4) Read DB
-  5) Delete DB
+  1) List table
+  2) Create table
+  3) Update table
+  4) Read table
+  5) Delete table
 
 # Amazon DynamoDB
 
