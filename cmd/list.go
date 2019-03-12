@@ -29,8 +29,8 @@ import (
 // listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "List all the tables in the DynamoDB",
-	Long: `List all the tables in DynamoDB.
+	Short: "list all the tables in the DynamoDB",
+	Long: `list all the tables in DynamoDB.
 	For example:
 
 list will give all the table names currently available in the AWS account.
