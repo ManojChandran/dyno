@@ -11,9 +11,9 @@ This project is to create a dyno cli for interacting with AWS dynamodb. Command 
 
 Amazon DynamoDB is a fully managed proprietary NoSQL database service that supports key-value and document data structures and is offered by Amazon.com as part of the Amazon Web Services portfolio.
 
-# AWS SDK for Go v2
+# AWS SDK for Go
 
-aws-sdk-go-v2 is the Developer Preview for the v2 of the AWS SDK for the Go programming language.
+aws-sdk-go is the official AWS SDK for the Go programming language.
 
 # Environment Variables for SDK
 
