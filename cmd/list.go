@@ -37,8 +37,13 @@ list will give all the table names currently available in the AWS account.
 It list out the table name and created date/time.`,
 	Run: func(cmd *cobra.Command, args []string) {
 //		fmt.Println("list called")
+      if len(args) == 0 {
+				 fmt.Println("Enter region")
+	       os.Exit(0)
+      }
+
 		sess, err := session.NewSession(&aws.Config{
-        Region: aws.String("us-east-1")},
+        Region: aws.String(args[0])},
     )
 
     // Create DynamoDB client
@@ -53,7 +58,7 @@ It list out the table name and created date/time.`,
     }
 
     fmt.Println("Tables:")
-    fmt.Println("")
+//    fmt.Println("")
 
     for _, n := range result.TableNames {
         fmt.Println(*n)

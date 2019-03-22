@@ -16,7 +16,7 @@ package cmd
 
 import (
 	"fmt"
-
+	"os"
 	"github.com/spf13/cobra"
 )
 
@@ -30,6 +30,11 @@ var readCmd = &cobra.Command{
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("read called")
+
+		if len(args) == 0 {
+			os.Exit(0)
+		}
+		fmt.Println(args[0])
 	},
 }
 
