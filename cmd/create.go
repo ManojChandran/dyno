@@ -16,20 +16,68 @@ package cmd
 
 import (
 	"fmt"
-
+  "os"
 	"github.com/spf13/cobra"
+	"github.com/aws/aws-sdk-go/aws"
+  "github.com/aws/aws-sdk-go/aws/session"
+  "github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 // createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:   "create",
 	Short: "Create dynamodb table",
-	Long: `Create dynamodb table
+	Long: `Create basic dynamodb table with primary and sort key
 For example:
-
+dyno create us-east-1
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("create called")
+//		fmt.Println("create called")
+			if len(args) == 0 {
+				 fmt.Println("Need region info,refer \n https://docs.aws.amazon.com/general/latest/gr/rande.html")
+				 os.Exit(0)
+			}
+
+			sess, err := session.NewSession(&aws.Config{
+				Region: aws.String(args[0])},
+			)
+
+			// Create DynamoDB client
+			svc := dynamodb.New(sess)
+			input := &dynamodb.CreateTableInput{
+			    AttributeDefinitions: []*dynamodb.AttributeDefinition{
+			        {
+			            AttributeName: aws.String("year"),
+			            AttributeType: aws.String("N"),
+			        },
+			        {
+			            AttributeName: aws.String("title"),
+			            AttributeType: aws.String("S"),
+			        },
+			    },
+			    KeySchema: []*dynamodb.KeySchemaElement{
+			        {
+			            AttributeName: aws.String("year"),
+			            KeyType:       aws.String("HASH"),
+			        },
+			        {
+			            AttributeName: aws.String("title"),
+			            KeyType:       aws.String("RANGE"),
+			        },
+			    },
+			    ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
+			        ReadCapacityUnits:  aws.Int64(10),
+			        WriteCapacityUnits: aws.Int64(10),
+			    },
+			    TableName: aws.String(args[1]),
+			}
+			_, err = svc.CreateTable(input)
+			if err != nil {
+			    fmt.Println("Got error calling CreateTable:")
+			    fmt.Println(err.Error())
+			    os.Exit(1)
+			}
+
 	},
 }
 

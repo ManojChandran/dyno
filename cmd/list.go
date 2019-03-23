@@ -38,7 +38,7 @@ It list out the table name and created date/time.`,
 	Run: func(cmd *cobra.Command, args []string) {
 //		fmt.Println("list called")
       if len(args) == 0 {
-				 fmt.Println("Enter region")
+				 fmt.Println("Enter region,refer \n https://docs.aws.amazon.com/general/latest/gr/rande.html")
 	       os.Exit(0)
       }
 
