@@ -38,3 +38,9 @@ $ export AWS_ACCESS_KEY_ID=YOUR_AKID
 $ export AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY
 
 $ export AWS_SESSION_TOKEN=TOKEN
+
+# GO HELP
+
+If you’re ever stuck without internet access, you can get the documentation running locally via:
+godoc -http=:6060
+and pointing your browser to http://localhost:6060
