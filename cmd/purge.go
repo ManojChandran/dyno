@@ -16,63 +16,56 @@ package cmd
 
 import (
 	"fmt"
-
+  "os"
 	"github.com/spf13/cobra"
-	"os"
-
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/dynamodb"
-
+  "github.com/aws/aws-sdk-go/aws/session"
+  "github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-// listCmd represents the list command
-var listCmd = &cobra.Command{
-	Use:   "list",
-	Short: "List all the tables in the DynamoDB",
-	Long: `List all the tables in DynamoDB.
-	For example:
-
-list will give all the table names currently available in the AWS account.
-It list out the table name and created date/time.`,
+// purgeCmd represents the purge command
+var purgeCmd = &cobra.Command{
+	Use:   "purge",
+	Short: "Purge the dynamo table",
+	Long: `Purge dynamodb table
+For example:
+dyno purge <table name>`,
 	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) == 0 {
+			 fmt.Println("Table Name missing")
+			 os.Exit(0)
+		}
 
 		sess, err := session.NewSession(&aws.Config{
-        Region: aws.String(os.Getenv("AWS_REGION"))},
-    )
-
-    // Create DynamoDB client
+			Region: aws.String(os.Getenv("AWS_REGION"))},
+		)
+		// Create DynamoDB client
     svc := dynamodb.New(sess)
+		input := &dynamodb.DeleteTableInput{
+			TableName: aws.String(args[0]),
+		}
 
     // Get the list of tables
-    result, err := svc.ListTables(&dynamodb.ListTablesInput{})
-
-    if err != nil {
-        fmt.Println(err)
-        os.Exit(1)
-    }
-
-    fmt.Println("Tables:")
-//    fmt.Println("")
-
-    for _, n := range result.TableNames {
-        fmt.Println(*n)
-    }
-     fmt.Println("AWS_REGION:", os.Getenv("AWS_REGION"))
-    fmt.Println("")
+		_, err = svc.DeleteTable(input)
+		if err != nil {
+				fmt.Println("Got error calling DeleteTable:")
+				fmt.Println(err.Error())
+				os.Exit(1)
+		}
+		fmt.Println("requested table deleted from ",os.Getenv("AWS_REGION"))
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(listCmd)
+	rootCmd.AddCommand(purgeCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// listCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// purgeCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// listCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// purgeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

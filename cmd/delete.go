@@ -23,8 +23,8 @@ import (
 // deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "delete the dynamodb table",
-	Long: `delete the dynamodb table
+	Short: "Delete the dynamodb table",
+	Long: `Delete the dynamodb table
 For example:
 
 `,

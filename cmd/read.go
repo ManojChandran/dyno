@@ -23,8 +23,8 @@ import (
 // readCmd represents the read command
 var readCmd = &cobra.Command{
 	Use:   "read",
-	Short: "read the dynamodb table ",
-	Long: `read the dynamodb table
+	Short: "Read the dynamodb table ",
+	Long: `Read the dynamodb table
 	For example:
 
 `,

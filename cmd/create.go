@@ -29,17 +29,17 @@ var createCmd = &cobra.Command{
 	Short: "Create dynamodb table",
 	Long: `Create basic dynamodb table with primary and sort key
 For example:
-dyno create us-east-1
+dyno create <table name>
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 //		fmt.Println("create called")
 			if len(args) == 0 {
-				 fmt.Println("Need region info,refer \n https://docs.aws.amazon.com/general/latest/gr/rande.html")
+				 fmt.Println("Table Name missing")
 				 os.Exit(0)
 			}
 
 			sess, err := session.NewSession(&aws.Config{
-				Region: aws.String(args[0])},
+				Region: aws.String(os.Getenv("AWS_REGION"))},
 			)
 
 			// Create DynamoDB client
@@ -69,7 +69,7 @@ dyno create us-east-1
 			        ReadCapacityUnits:  aws.Int64(10),
 			        WriteCapacityUnits: aws.Int64(10),
 			    },
-			    TableName: aws.String(args[1]),
+			    TableName: aws.String(args[0]),
 			}
 			_, err = svc.CreateTable(input)
 			if err != nil {

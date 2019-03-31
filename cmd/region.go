@@ -16,33 +16,37 @@ package cmd
 
 import (
 	"fmt"
-
+	"os"
 	"github.com/spf13/cobra"
 )
 
-// updateCmd represents the update command
-var updateCmd = &cobra.Command{
-	Use:   "update",
-	Short: "Update the dynamodb table",
-	Long: `Update the dynamodb table
-	For example:
-
-`,
+// regionCmd represents the region command
+var regionCmd = &cobra.Command{
+	Use:   "region",
+	Short: "Set AWS region",
+	Long: `Set the AWS to access the Table
+For example:
+dyno region <table name>`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("update called")
+		if len(args) == 0 {
+			fmt.Println("region required,\n refer https://docs.aws.amazon.com/general/latest/gr/rande.html")
+			os.Exit(0)
+		}
+		os.Setenv("AWS_REGION", args[0])
+		fmt.Println("AWS region set to ", args[0])
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(updateCmd)
+	rootCmd.AddCommand(regionCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// updateCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// regionCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// updateCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// regionCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
