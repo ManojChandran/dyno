@@ -45,14 +45,14 @@ C:\> set AWS_SESSION_TOKEN=TOKEN
 C:\> set AWS_REGION=us-east-1
 
 # Available Commands
-  create      Create dynamodb table
-  delete      Delete the dynamodb table
-  help        Help about any command
-  list        List all the tables in the DynamoDB
-  purge       Purge the dynamodb table
-  read        Read the dynamodb table
-  region      Set AWS region
-  update      Update the dynamodb table
+  create      Create dynamodb table &nbsp;
+  delete      Delete the dynamodb table &nbsp;
+  help        Help about any command &nbsp;
+  list        List all the tables in the DynamoDB &nbsp;
+  purge       Purge the dynamodb table &nbsp;
+  read        Read the dynamodb table &nbsp;
+  region      Set AWS region &nbsp;
+  update      Update the dynamodb table &nbsp;
 
 # GO HELP
 
