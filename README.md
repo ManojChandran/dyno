@@ -26,33 +26,27 @@ The following examples show how you configure the environment variables.
 
 Linux, OS X, or Unix
 
-$ export AWS_ACCESS_KEY_ID=YOUR_AKID
-
-$ export AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY
-
-$ export AWS_SESSION_TOKEN=TOKEN
-
-$ export AWS_REGION=us-east-1
+$ export AWS_ACCESS_KEY_ID=YOUR_AKID <br />
+$ export AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY <br />
+$ export AWS_SESSION_TOKEN=TOKEN <br />
+$ export AWS_REGION=us-east-1 <br />
 
 Windows
 
-C:\> set AWS_ACCESS_KEY_ID=YOUR_AKID
-
-C:\> set AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY
-
-C:\> set AWS_SESSION_TOKEN=TOKEN
-
-C:\> set AWS_REGION=us-east-1
+C:\> set AWS_ACCESS_KEY_ID=YOUR_AKID <br />
+C:\> set AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY <br />
+C:\> set AWS_SESSION_TOKEN=TOKEN <br />
+C:\> set AWS_REGION=us-east-1 <br />
 
 # Available Commands
-  create      Create dynamodb table &nbsp;
-  delete      Delete the dynamodb table &nbsp;
-  help        Help about any command &nbsp;
-  list        List all the tables in the DynamoDB &nbsp;
-  purge       Purge the dynamodb table &nbsp;
-  read        Read the dynamodb table &nbsp;
-  region      Set AWS region &nbsp;
-  update      Update the dynamodb table &nbsp;
+  create      Create dynamodb table <br />
+  delete      Delete the dynamodb table <br />
+  help        Help about any command <br />
+  list        List all the tables in the DynamoDB <br />
+  purge       Purge the dynamodb table <br />
+  read        Read the dynamodb table <br />
+  region      Set AWS region <br />
+  update      Update the dynamodb table <br />
 
 # GO HELP
 
