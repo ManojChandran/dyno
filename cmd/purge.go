@@ -17,6 +17,8 @@ package cmd
 import (
 	"fmt"
   "os"
+	"bufio"
+	"strings"
 	"github.com/spf13/cobra"
 	"github.com/aws/aws-sdk-go/aws"
   "github.com/aws/aws-sdk-go/aws/session"
@@ -26,7 +28,7 @@ import (
 // purgeCmd represents the purge command
 var purgeCmd = &cobra.Command{
 	Use:   "purge",
-	Short: "Purge the dynamo table",
+	Short: "Purge the dynamodb table",
 	Long: `Purge dynamodb table
 For example:
 dyno purge <table name>`,
@@ -45,6 +47,15 @@ dyno purge <table name>`,
 			TableName: aws.String(args[0]),
 		}
 
+		// get confirmation on deleting the table
+		r := bufio.NewReader(os.Stdin)
+		fmt.Print("Re-Enter the table name: ")
+		confirm, _ := r.ReadString('\n')
+
+		if strings.TrimSpace(confirm) != args[0]{
+			 fmt.Println("bye, bye")
+			 os.Exit(0)
+		}
     // Get the list of tables
 		_, err = svc.DeleteTable(input)
 		if err != nil {

@@ -6,6 +6,7 @@ This project is to create a dyno cli for interacting with AWS dynamodb. Command 
   3) Update table
   4) Read table
   5) Delete table
+  6) Purge table
 
 # Amazon DynamoDB
 
@@ -43,6 +44,15 @@ C:\> set AWS_SESSION_TOKEN=TOKEN
 
 C:\> set AWS_REGION=us-east-1
 
+# Available Commands
+  create      Create dynamodb table
+  delete      Delete the dynamodb table
+  help        Help about any command
+  list        List all the tables in the DynamoDB
+  purge       Purge the dynamodb table
+  read        Read the dynamodb table
+  region      Set AWS region
+  update      Update the dynamodb table
 
 # GO HELP
 

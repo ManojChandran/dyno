@@ -33,7 +33,7 @@ dyno region <table name>`,
 			os.Exit(0)
 		}
 		os.Setenv("AWS_REGION", args[0])
-		fmt.Println("AWS region set to ", args[0])
+		fmt.Println("AWS region set to ", os.Getenv("AWS_REGION"))
 	},
 }
 
