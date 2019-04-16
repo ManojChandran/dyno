@@ -36,7 +36,7 @@ var listCmd = &cobra.Command{
 list will give all the table names currently available in the AWS account.
 It list out the table name and created date/time.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		
+
 		sess, err := session.NewSession(&aws.Config{
         Region: aws.String(os.Getenv("AWS_REGION"))},
     )
@@ -58,8 +58,8 @@ It list out the table name and created date/time.`,
     for _, n := range result.TableNames {
         fmt.Println(*n)
     }
-     fmt.Println("AWS_REGION:", os.Getenv("AWS_REGION"))
-    fmt.Println("")
+		fmt.Println("")
+    fmt.Println("AWS_REGION:", os.Getenv("AWS_REGION"))
 	},
 }
 
